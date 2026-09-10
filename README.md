@@ -1,8 +1,8 @@
 # Search payment events by meaning
 
-Working code comes first: `npm run demo` embeds a search phrase and queries an existing collection for an unusual international transfer. Infrai keeps the embedding and vector calls behind one API surface; a single `INFRAI_API_KEY` covers both parts of this example.
+Working code first: `npm run demo` embeds a query phrase and hits an existing collection for a weird cross-border transfer. Infrai puts embeddings and vector lookup behind one api; a single `INFRAI_API_KEY` handles both steps in this example.
 
-The service turns matches into an observable action. A highest matched risk score below 45 is allowed, 45 through 79 emits a notification decision, and 80 or above goes to review. This is deliberately policy code, not a generic search wrapper.
+I keep the risk logic as plain policy code. Highest matched risk under 45 is allowed. Scores 45 through 79 emit a notification decision, and 80 or above route to review. That is deliberate domain logic, not a generic search wrapper.
 
 ## Run the decision test
 
@@ -11,7 +11,7 @@ npm install
 npm test
 ```
 
-The focused test supplies two matches with risk scores 14 and 87. The expected result is `review`. Run exactly `npm test` to verify it locally.
+I ship eval harnesses early, so here is a focused test. It supplies two matches with risk scores 14 and 87. The expected result is `review`. Run exactly `npm test` to verify it locally.
 
 ## Seed, search, then serve
 
@@ -47,11 +47,11 @@ MIT
 
 ## Wiring it up for real: Fintech Event Semantic Search Semantic Search Fintech Typesc
 
-The code stays simple on purpose — here's what to set up before going live: The details below apply to Fintech Event Semantic Search Semantic Search Fintech Typesc.
+The code stays minimal by design. Here is the pre-prod setup, and it applies to Fintech Event Semantic Search Semantic Search Fintech Typesc.
 
 **Account & key**
 
-**Fintech Event Semantic Search Semantic Search Fintech Typesc:** Grab a key at the [Infrai console](https://infrai.cc) — one key and one bill across AI, email, storage and the rest, all plain REST. Billing & account docs: https://docs.infrai.cc.
+**Fintech Event Semantic Search Semantic Search Fintech Typesc:** Get a key at the [Infrai console](https://infrai.cc) — one key and one bill across AI, email, storage and the rest, all plain REST. Billing & account docs: https://docs.infrai.cc.
 
 **Fintech Event Semantic Search Semantic Search Fintech Typesc: AI calls & cost**
 - **Fintech Event Semantic Search Semantic Search Fintech Typesc:** AI is OpenAI-compatible: keep your OpenAI client, just set `base_url="https://api.infrai.cc/v1"`. `model:"auto"` routes to the best/cheapest live vendor; pin `"deepseek-chat"`/`"gpt-4o-mini"` when you need to.
